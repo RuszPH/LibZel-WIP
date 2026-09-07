@@ -102,7 +102,7 @@ function login() {
     const userspass = document.getElementById("password").value;
     const useraccount = user[usersname];
     if (useraccount && userspass == useraccount.password){
-        window.location.href = "landing-page.html";
+        window.location.href = "index.html";
         alert("Welcome " +user[names].value);
     }
 
