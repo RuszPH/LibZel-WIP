@@ -1,0 +1,73 @@
+.login {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, #ffffff, #a7a6a6);
+    box-shadow: 1px 1px 2px;
+    border-radius: 5px;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 30vh;
+    margin: auto;
+    padding: 20px;
+}
+
+.login-form table {
+    border-radius: 3px;
+    display: flex;
+    padding: 10px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    border: 1px solid rgb(221,221,245);
+}
+
+.login-form table td {
+    padding:10px;
+}
+
+.login-form table td label {
+    text-transform: capitalize;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+}
+
+.login-form table td input {
+    padding: 10px;
+    border: 1px solid #1E293B;
+    border-radius: 3px;
+}
+
+.login-form table td button{
+    border: 1px solid #1E293B;
+    padding: 12px 20px ;
+    font-size: 1em;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: #ffffff;
+    color:#1E293B;
+    border-radius: 5px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    cursor: pointer;
+}
+.login-form table td button:hover {
+    background-color: #1E293B;
+    color: #ffffff;
+}
+
+.login-form table td button:active {
+    background-color: #1E293B;
+    color: #ffffff;
+}
+
+
+
+
+
