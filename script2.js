@@ -140,5 +140,14 @@ render(filtered);
 
 });
 
+// Toggle the mobile menu and keep its expanded state available to assistive technology.
+document.querySelectorAll(".menu-toggle").forEach(toggle => {
+    toggle.addEventListener("click", () => {
+        const header = toggle.closest("header");
+        const isOpen = header.classList.toggle("menu-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+});
+
 
 render(product)

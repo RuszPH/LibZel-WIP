@@ -3,22 +3,26 @@ body{
     padding:0;
     height: auto;
     width: auto;
-    overflow-x: none;
+    overflow-x: hidden;
     font-family:Georgia, 'Times New Roman', Times, serif;
     background-color: #f5f5f5;
+}
+
+/* Include padding and borders in dimensions so fluid layouts stay within the viewport. */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 
 header {
     width: 100%;
     height: auto;
-    padding: 0;
+    padding: 0 1rem;
     background-color:  #1E293B;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
 }
 
 
@@ -33,7 +37,7 @@ footer{
     align-items: center;
 }
 .web-name {
-    padding:7px 12px;
+    padding:7px 0;
     
 }
 
@@ -50,17 +54,20 @@ footer{
 }
 
 .navbar{
-    padding:7px 12px;
+    padding:7px 0;
 }
 
 .navbar ul{
     list-style-type: none;
     display: flex;
     flex-direction: row;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar ul li {
-    padding:0px 12px;
+    padding:0 0.5rem;
 }
 
 .navbar ul li a{
@@ -75,10 +82,17 @@ footer{
 }
 
 .search-bar{
-    padding:7px 12px;
+    padding:7px 0;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
 }
 
 .search-bar input {
+    /* Preserve the desktop search width while allowing it to fit narrow containers. */
+    width: 12rem;
+    max-width: 100%;
+    min-width: 0;
     font-size:16px ;
     border-radius: 6px;
     outline: none;
@@ -91,10 +105,37 @@ footer{
     color: #F8FAFC;
 }
 
+.menu-toggle {
+    /* Keep the menu control hidden until the mobile breakpoint activates it. */
+    display: none;
+    border: 1px solid #F8FAFC;
+    background: transparent;
+    color: #F8FAFC;
+    border-radius: 4px;
+    padding: 0.55rem 0.7rem;
+    cursor: pointer;
+}
+
+.visually-hidden {
+    /* Keep accessible labels available to assistive technology without visual clutter. */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 
 
 .promo-section {
-    height: 85vh;
+    /* Use flexible spacing so the hero scales across viewport sizes. */
+    min-height: 100vh;
+   
+    padding: clamp(2rem, 5vw, 5rem);
     background:linear-gradient(135deg, #DCE3EC 0%, #A7B8D8 50%, #6D7FA3 100%);
     width: 100%;
     display: flex;
@@ -105,7 +146,8 @@ footer{
 }
 
 .promo-section-1 {
-    height: 100vh;
+    min-height: 100vh;
+    padding: clamp(1rem, 4vw, 4rem);
     background:linear-gradient(135deg, #DCE3EC 0%, #A7B8D8 50%, #6D7FA3 100%);
     width: 100%;
     display: flex;
@@ -130,7 +172,7 @@ footer{
 }
 
 .text-holder h2 {
-    font-size: 3.5em;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     text-align: left;
     margin: 0;
 }
@@ -146,6 +188,14 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.img-holder img {
+    /* Center the hero artwork without stretching its source proportions. */
+    display: block;
+    width: min(100%, 600px);
+    height: auto;
+    object-fit: contain;
 }
 
 
@@ -180,7 +230,7 @@ footer{
 
 .grid {
     overflow-y: none;
-    margin:30px; 
+    margin: clamp(1rem, 3vw, 2rem); 
     border: 1px solid rgba(221,221,221);
     overflow-x: hidden;
     border-radius: 3px;
@@ -194,24 +244,26 @@ footer{
 }
 
 .product-grid {
-    width: 95%;
+    /* Let product cards create fluid columns based on the available width. */
+    width: 100%;
     display:grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
     height: fit-content;
     justify-content:start;
-    padding: 30px;
-    gap: 20px;
+    padding: clamp(1rem, 3vw, 2rem);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .product-categories
 {
-    width: 95%;
+    /* Cap the category layout at four columns on larger screens. */
+    width: 100%;
     display:grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     height: fit-content;
     justify-content:start;
-    padding: 30px;
-    gap: 5px;
+    padding: clamp(1rem, 3vw, 2rem);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .product-categories .card {
@@ -222,11 +274,20 @@ footer{
 
 }
 
+/* Keep every category image square while filling its responsive card width. */
+.product-categories .card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+}
+
 .grid-anchor{
+    /* Make each link fill its grid track so cards align consistently. */
     text-decoration: none;
     color: inherit;
-    width: fit-content;
-    height: fit-content;
+    width: 100%;
+    height: 100%;
     
 }
 
@@ -237,7 +298,7 @@ footer{
 .card-container{
    display: flex; 
    flex-direction: column;
-    width:250px;
+    width:100%;
     height: fit-content;
     border-radius: 5px;
     padding: 10px;
@@ -293,10 +354,12 @@ footer{
 
 
 .product-holder {
+    /* Constrain the detail view while keeping its outer margins fluid. */
     display: flex;
     flex-direction: row;
     overflow-y: none;
-    margin: 30px 50px ; 
+    margin: clamp(1rem, 4vw, 3rem) auto; 
+    width: min(1100px, calc(100% - 2rem));
     border: 1px solid rgba(221,221,221);
     overflow-x: hidden;
     border-radius: 3px;
@@ -306,6 +369,7 @@ footer{
 
 .img-container{
     width: 40%;
+    padding: 1rem;
     display: flex;
     
     flex-direction: column;
@@ -317,11 +381,25 @@ footer{
 .img-container img {
     padding: 5px;
     cursor: pointer;
+    max-width: 100%;
+    height: auto;
 }
 
 .images-holder {
+    /* Keep desktop thumbnails in one row below the primary product image. */
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.images-holder img {
+    /* Give every thumbnail a stable, evenly sized frame. */
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
 }
 
 
@@ -329,6 +407,7 @@ footer{
 
 .product-container{
     width: 60%;
+    padding: 1rem;
 }
 
 .product-stars a {
@@ -354,7 +433,7 @@ footer{
 }
 
 .product-buttons  {
-    width: 1000%;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -393,5 +472,134 @@ footer{
 
 
 #mains {
-    min-height: 100vh;
+    min-height: 85vh;
+}
+
+@media (max-width: 900px) {
+    /* Stack product details and hide secondary thumbnails on medium screens. */
+    header {
+        flex-wrap: wrap;
+    }
+
+    .navbar ul li {
+        padding: 0 0.25rem;
+    }
+
+    .product-holder {
+        flex-direction: column;
+    }
+
+    .img-container,
+    .product-container {
+        width: 100%;
+    }
+
+    .images-holder {
+        display: none;
+    }
+
+    .product-categories {
+        /* Reduce category density to two columns on tablet-sized screens. */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    /* Convert the header and content into a phone-friendly single-column layout. */
+    header {
+        align-items: center;
+        padding: 0 0.75rem;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar,
+    .search-bar {
+        display: none;
+        width: 100%;
+    }
+
+    header.menu-open .navbar,
+    header.menu-open .search-bar {
+        display: block;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .navbar ul li {
+        padding: 0;
+    }
+
+    .navbar ul li a {
+        display: block;
+        padding: 0.75rem 0.25rem;
+    }
+
+    .search-bar input {
+        width: 22rem;
+        max-width: 100%;
+    }
+
+    .promo-section,
+    .promo-section-1 {
+        min-height: auto;
+        padding: 2rem 1rem;
+    }
+
+    .promo-section {
+        flex-direction: column;
+    }
+
+    .text-holder,
+    .img-holder {
+        width: 100%;
+    }
+
+    .text-wrapper {
+        width: 100%;
+    }
+
+    .product-categories {
+        /* Use one category card per row on phones for readable content. */
+        grid-template-columns: 1fr;
+    }
+
+    .text-holder h2 {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .img-holder img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    footer {
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .product-buttons {
+        flex-direction: column;
+    }
+
+    .product-buttons button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .product-grid,
+    .product-categories {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
