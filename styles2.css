@@ -476,9 +476,57 @@ footer{
 }
 
 @media (max-width: 900px) {
-    /* Stack product details and hide secondary thumbnails on medium screens. */
+    /* Collapse the header navigation and search into the burger menu on medium screens. */
     header {
         flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-left: auto;
+    }
+
+    .navbar,
+    .search-bar {
+        display: none;
+        width: 100%;
+    }
+
+    header.menu-open .navbar,
+    header.menu-open .search-bar {
+        display: block;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Expand each collapsed navigation link into a comfortable finger-sized target. */
+    .navbar ul li {
+        width: 100%;
+        padding: 0;
+    }
+
+    .navbar ul li a {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        width: 100%;
+        padding: 0.75rem 0.5rem;
+    }
+
+    /* Place the hero image above its text on tablet and phone layouts. */
+    .promo-section {
+        flex-direction: column;
+    }
+
+    .promo-section .img-holder {
+        order: 1;
+    }
+
+    .promo-section .text-holder {
+        order: 2;
     }
 
     .navbar ul li {
@@ -505,31 +553,10 @@ footer{
 }
 
 @media (max-width: 700px) {
-    /* Convert the header and content into a phone-friendly single-column layout. */
+    /* Refine the collapsed header and content spacing for phone-sized screens. */
     header {
         align-items: center;
         padding: 0 0.75rem;
-    }
-
-    .menu-toggle {
-        display: block;
-        margin-left: auto;
-    }
-
-    .navbar,
-    .search-bar {
-        display: none;
-        width: 100%;
-    }
-
-    header.menu-open .navbar,
-    header.menu-open .search-bar {
-        display: block;
-    }
-
-    .navbar ul {
-        flex-direction: column;
-        gap: 0;
     }
 
     .navbar ul li {
