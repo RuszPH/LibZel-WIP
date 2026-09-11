@@ -90,7 +90,7 @@ footer{
 
 .search-bar input {
     /* Preserve the desktop search width while allowing it to fit narrow containers. */
-    width: 12rem;
+    width: 22rem;
     max-width: 100%;
     min-width: 0;
     font-size:16px ;
